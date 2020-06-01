@@ -10,8 +10,8 @@ def home_view(request):
     # функцию `reverse`
     pages = {
         'Главная страница': reverse('home'),
-        'Показать текущее время': 'current_time',
-        'Показать содержимое рабочей директории': 'workdir'
+        'Показать текущее время': reverse('time'),
+        'Показать содержимое рабочей директории': reverse('workdir')
     }
     
     # context и параметры render менять не нужно
@@ -33,5 +33,5 @@ def time_view(request):
 def workdir_view(request):
     workdir = os.listdir('.')
     workdir = ', '.join(workdir)
-    workdir = workdir.replace(',', ',\n')
+    workdir = workdir.replace(' ', '</br>')
     return HttpResponse(workdir)
